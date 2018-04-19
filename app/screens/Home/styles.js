@@ -2,7 +2,6 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 
 export default EStyleSheet.create({
   mainContainer: {
-    marginTop: 20,
     flex: 1,
     justifyContent: 'flex-end',
     backgroundColor: '$white',
