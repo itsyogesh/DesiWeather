@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+
+import API from '../../api'
 
 import Container from '../../components/Container'
 import Text from '../../components/Text'
@@ -19,9 +20,9 @@ class Home extends Component {
   componentDidMount = async () => {
     this.setState({ isLoading: true })
     try {
-      let { data } = await axios.get('https://api.openweathermap.org/data/2.5/find?q=London&units=metric&APPID=4e96623adf41e9730a8c890b8054a5b0')
-      console.log('cdd', data)
-      this.setState({ isLoading: false, weatherData: data.list[data.count - 1] })
+      const location = await API.fetchLocation()
+      const weatherData = await API.fetchWeather(location.city)
+      this.setState({ isLoading: false, weatherData })
     } catch (e) {
       console.log(e)
       this.setState({ error: e, isLoading: false })
