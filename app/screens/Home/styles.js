@@ -3,9 +3,9 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 export default EStyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     backgroundColor: '$white',
-    paddingBottom: 30,
+    paddingVertical: 30,
     paddingHorizontal: 30
   },
   mainText: {
