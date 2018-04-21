@@ -7,6 +7,9 @@ import Text from '../../components/Text'
 import StatusBar from '../../components/StatusBar'
 import WeatherIcon from '../../components/WeatherIcon'
 
+import constants from '../../api/constants'
+import utils from '../../utils'
+
 import styles from './styles'
 
 class Home extends Component {
@@ -52,14 +55,17 @@ class Home extends Component {
     }
 
     if(!isLoading && weatherData) {
+      console.log(weatherData.weather[0].id)
+      const iconId = utils.weatherDataMapper(weatherData.weather[0].id)
+      console.log(iconId, constants[iconId])
       return (
         <Container content style={mainContainerStyle}>
           <StatusBar backgroundColor={backgroundColor} />
           <Container>
-            <WeatherIcon weatherId={weatherData.weather[0].id} />
+            <WeatherIcon weatherId={iconId} />
           </Container>
           <Container>
-            <Text tag='h1' style={styles.mainText}>{`Its fucking raining in ${weatherData.name}`}</Text>
+            <Text tag='h3' style={styles.mainText}>{constants[iconId].weatherText}</Text>
             <Text tag='h5' style={styles.subText}>{`${'Dont make eye contact'.toUpperCase()}`}</Text>
           </Container>
         </Container>
